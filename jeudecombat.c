@@ -10,7 +10,7 @@
  }
 
  int choixdumonstre(int choixm) {
-   choixm = rand()%1 + 1;
+   choixm = rand()%2 + 1;
    return choixm;
  }
 int main() {
@@ -28,19 +28,27 @@ int main() {
   int atkmonstresave;
   int atkjsave;
   int choixsave;
+  int defm;
+  int soin;
 pv=100;
 pvactuel=pv;
 pmonstre=100;
 actuelmonstre=pmonstre;
-
+defm=0;
+soin=3;
 while (pvactuel>0 && actuelmonstre>0){
+printf("=========================== \n");
 printf("Vous avez %d",pvactuel);
 printf(" de point de vie. \n ");
 
 printf("Le monstre a %d",actuelmonstre);
 printf(" de point de vie. \n");
 
-printf("Que voulez vous faire? Attaquez?\n Ou se defendre? 1=Atk 0=Def \n \n");
+printf("Vous avez %d",soin);
+printf(" bandage. \n");
+printf("=========================== \n");
+
+printf("Que voulez vous faire? Attaquez?\n Ou se defendre? 1=Atk 0=Def 2=soin \n \n");
 scanf("%d",&choix);
 if (choix==0){
   printf("Vous vous defendez ! La prochaine attaque de votre ennemie sera divise par 3 ! \n");
@@ -50,13 +58,35 @@ if (choix==1){
   printf("Vous ATTAQUEZ ! VOUS LANCEZ STORMBREAKER SUR VOTRE OPPOSANT ! Peut être il y'aura un coup critique??? \n");
     atk=1;
 }
+if (choix==2 && soin<=0) {
+  printf("Vous avez plus de bandage, vous avez gaché une opportunité dommage...");
+}
+if (choix==2 && pvactuel==100) {
+  printf("Vous êtes full vie, vous avez gaché une opportunité dommage...");
+}
+if (choix==2 && soin>0 && pvactuel!=100){
+  printf("Vous vous soignez !  \n");
+  pvactuel=pvactuel+10;
+  soin=soin-1;
+}
 if (atk==1) {
+  if (defm==0) {
   atkjsave=attaquejoueur(atkj);
   actuelmonstre=actuelmonstre-atkjsave;
   printf("%d ont ete donne au monstre \n",atkjsave);
   printf("Le monstre a prit cher, il a %d",actuelmonstre);
   printf(" de point de vie. \n");
   atk=0;
+  }
+  if (defm==1) {
+  atkjsave=attaquejoueur(atkj)/3;
+  actuelmonstre=actuelmonstre-atkjsave;
+  printf("%d ont ete donne au monstre \n",atkjsave);
+  printf("Le monstre a reduit les degats de 3, il a %d",actuelmonstre);
+  printf(" de point de vie. \n");
+  atk=0;
+  defm=0;
+  }
 }
 choixsave=choixdumonstre(choixm);
 if (choixsave==1){
@@ -78,15 +108,18 @@ else{
   printf(" de degats \n");
   def=0;
 }
-if (choixsave==0) {
- printf("Le monstre se defend");
+}
+if (choixsave>1) {
+ printf("Le monstre se defend \n");
+ defm=1;
   }
+
   if (pvactuel<=0 && actuelmonstre>0){
     printf("Vous avez ete vaincu ! Dommage... \n");
   }
   if (actuelmonstre<=0){
     printf("Vous avez vaincu le monstre, bien joue \n");
   }
-}
+
   }
 }
