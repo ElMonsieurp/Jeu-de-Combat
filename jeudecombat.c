@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
  int attaquedumonstre(int atkmonstre) {
+   srand(time( NULL ) );
    atkmonstre = rand()%40 + 1;
    return atkmonstre;
  }
  int attaquejoueur(int atkj){
+   srand(time( NULL ) );
   atkj = rand()%30 + 4;
   return atkj;
  }
 
  int choixdumonstre(int choixm) {
+   srand(time( NULL ) );
    choixm = rand()%2 + 1;
    return choixm;
  }
@@ -89,7 +92,7 @@ if (atk==1) {
   }
 }
 choixsave=choixdumonstre(choixm);
-if (choixsave==1){
+if (choixsave==1 || choixsave<1){
 
 printf("Le monstre va attaquer ! Attention ! \n");
 if (def==1){
