@@ -51,11 +51,11 @@ printf("=========================== \n");
 printf("Que voulez vous faire? Attaquez?\n Ou se defendre? 1=Atk 0=Def 2=soin \n \n");
 scanf("%d",&choix);
 if (choix==0){
-  printf("Vous vous defendez ! La prochaine attaque de votre ennemie sera divise par 3 ! \n");
+  printf("Vous vous defendez ! La prochaine attaque de votre ennemi sera divise par 3 ! \n");
   def=1;
 }
 if (choix==1){
-  printf("Vous ATTAQUEZ ! VOUS LANCEZ STORMBREAKER SUR VOTRE OPPOSANT ! Peut être il y'aura un coup critique??? \n");
+  printf("Vous ATTAQUEZ ! VOUS LANCEZ STORMBREAKER SUR VOTRE OPPOSANT ! Peut être il y'aura un coup critique ? \n");
     atk=1;
 }
 if (choix==2 && soin<=0) {
